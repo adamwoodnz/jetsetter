@@ -3,23 +3,32 @@ import './Item.css';
 
 class Item extends Component {
   render() {
-    const { item } = this.props;
+    const { item: { id, packed, value } } = this.props;
+    
     return (
       <article className="Item">
-        <label htmlFor={item.id}>
+        <label htmlFor={id}>
           <input
             type="checkbox"
-            checked={item.packed}
-            onChange={() => {}}
-            id={item.id}
+            checked={packed}
+            onChange={this.handleCheck}
+            id={id}
           />
-          {item.value}
+          {value}
         </label>
-        <button className="Item-remove" onClick={() => {}}>
+        <button className="Item-remove" onClick={this.handleRemove}>
           Remove
         </button>
       </article>
     );
+  }
+
+  handleCheck = event => {
+    this.props.onCheck(this.props.item.id, event.currentTarget.value);
+  }
+
+  handleRemove = event => {
+    this.props.onRemove(this.props.item.id);
   }
 }
 
