@@ -12,7 +12,7 @@ class Items extends Component {
   };
 
   render() {
-    const { title, items, onCheckOff, onRemove } = this.props;
+    const { title, items } = this.props;
     const { searchTerm } = this.state;
     return (
       <section className="Items">
@@ -27,8 +27,6 @@ class Items extends Component {
           .map(item => (
             <Item
               key={item.id}
-              onCheckOff={() => onCheckOff(item)}
-              onRemove={() => onRemove(item)}
               item={item}
             />
           ))}

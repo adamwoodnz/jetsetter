@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import uniqueId from 'lodash/uniqueId';
+import * as Actions from './Actions';
 
 import './NewItem.css';
 
@@ -18,12 +18,14 @@ class NewItem extends Component {
   };
 
   handleSubmit = event => {
-    const { onSubmit } = this.props;
+    event.preventDefault();
+
     const { value } = this.state;
 
-    event.preventDefault();
-    onSubmit({ value, packed: false, id: uniqueId() });
-    this.setState({ value: '' });
+    if (value) {
+      Actions.addItem(value);
+      this.setState({ value: '' });
+    }
   };
 
   render() {
