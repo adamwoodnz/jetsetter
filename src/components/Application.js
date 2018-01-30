@@ -5,6 +5,8 @@ import UnpackedItemsContainer from '../containers/UnpackedItemsContainer';
 import MarkAllAsUnpackedContainer from '../containers/MarkAllAsUnpackedContainer';
 import UnpackedFilterContainer from '../containers/UnpackedFilterContainer';
 import PackedFilterContainer from '../containers/PackedFilterContainer';
+import store from '../store';
+import { getAllItems } from '../actions/items-actions';
 
 import './Application.css';
 
@@ -18,6 +20,10 @@ class Application extends Component {
         <MarkAllAsUnpackedContainer />
       </div>
     );
+  }
+
+  componentDidMount() {
+    store.dispatch(getAllItems());
   }
 }
 
